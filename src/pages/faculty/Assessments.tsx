@@ -290,12 +290,6 @@ export default function FacultyAssessments() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Assessment setup</span>
-          <strong>Build graded items before score encoding</strong>
-          <p>Create quizzes, performance tasks, written works, and quarter exams per class before opening the gradebook.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

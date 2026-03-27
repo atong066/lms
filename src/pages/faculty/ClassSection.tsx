@@ -115,12 +115,6 @@ export default function FacultyClassSection() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Class roster</span>
-          <strong>{section.code} | {section.title}</strong>
-          <p>Review the full section roster, search students quickly, and jump to grade encoding when needed.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

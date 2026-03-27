@@ -136,12 +136,6 @@ export default function FacultyDashboard() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>This week</span>
-          <strong>Midterm coverage lock on Friday</strong>
-          <p>Finalize lesson evidence, consultation notes, and exam supervision before the department review window closes.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

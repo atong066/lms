@@ -231,12 +231,6 @@ export default function FacultyResources() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Resource library</span>
-          <strong>Course files and reusable templates</strong>
-          <p>Keep lecture decks, rubrics, worksheets, and policy notes easy to scan from one faculty library.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

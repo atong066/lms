@@ -291,12 +291,6 @@ export default function FacultyGradebookSection() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Open section</span>
-          <strong>{section.code} | {section.title}</strong>
-          <p>Click a learner below to open the scoring modal and encode quarter grades with assessment titles.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

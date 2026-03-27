@@ -288,12 +288,6 @@ export default function FacultySettings() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Workspace settings</span>
-          <strong>Profile, classroom defaults, and notifications</strong>
-          <p>Manage the settings that shape your faculty workflow without falling back into the admin console.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

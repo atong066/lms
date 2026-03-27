@@ -90,12 +90,6 @@ export default function FacultyGradebook() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>This week</span>
-          <strong>Open a section to encode quarter grades</strong>
-          <p>Select a section and subject first, then open learner records to add quiz, performance task, and written work scores.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

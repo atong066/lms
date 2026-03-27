@@ -161,12 +161,6 @@ export default function FacultyForum() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Faculty forum</span>
-          <strong>Department updates and class discussions</strong>
-          <p>Use this space to keep teaching questions, coordination notes, and pinned notices in one place.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

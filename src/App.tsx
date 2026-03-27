@@ -25,6 +25,17 @@ import FacultyGradebookSection from './pages/faculty/GradebookSection'
 import FacultyResources from './pages/faculty/Resources'
 import FacultyCalendar from './pages/faculty/Calendar'
 import FacultySettings from './pages/faculty/Settings'
+import StudentDashboard from './pages/student/Dashboard'
+import StudentSubjects from './pages/student/Subjects'
+import StudentGrades from './pages/student/Grades'
+import StudentAssessments from './pages/student/Assessments'
+import StudentAssessmentTake from './pages/student/AssessmentTake'
+import StudentSchedule from './pages/student/Schedule'
+import StudentCalendar from './pages/student/Calendar'
+import StudentForum from './pages/student/Forum'
+import StudentForumThread from './pages/student/ForumThread'
+import StudentProfile from './pages/student/Profile'
+import StudentSettings from './pages/student/Settings'
 import Reports from './pages/Reports'
 
 function App() {
@@ -46,6 +57,18 @@ function App() {
           <Route path="/faculty/resources" element={<FacultyResources />} />
           <Route path="/faculty/calendar" element={<FacultyCalendar />} />
           <Route path="/faculty/settings" element={<FacultySettings />} />
+          <Route path="/student" element={<Navigate to="/student/dashboard" replace />} />
+          <Route path="/student/dashboard" element={<StudentDashboard />} />
+          <Route path="/student/subjects" element={<StudentSubjects />} />
+          <Route path="/student/grades" element={<StudentGrades />} />
+          <Route path="/student/assessments" element={<StudentAssessments />} />
+          <Route path="/student/assessments/:assessmentId" element={<StudentAssessmentTake />} />
+          <Route path="/student/schedule" element={<StudentSchedule />} />
+          <Route path="/student/calendar" element={<StudentCalendar />} />
+          <Route path="/student/forum" element={<StudentForum />} />
+          <Route path="/student/forum/:threadId" element={<StudentForumThread />} />
+          <Route path="/student/profile" element={<StudentProfile />} />
+          <Route path="/student/settings" element={<StudentSettings />} />
           <Route path="/classes" element={<FacultyClasses />} />
           <Route path="/admin/users" element={<Users />} />
           <Route path="/admin/students" element={<Students />} />

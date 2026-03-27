@@ -152,12 +152,6 @@ export default function FacultyForumThread() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Open thread</span>
-          <strong>{thread.title}</strong>
-          <p>Review the thread timeline, quote earlier comments, and post your reply from the composer below.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

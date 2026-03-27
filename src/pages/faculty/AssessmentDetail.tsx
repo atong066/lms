@@ -213,12 +213,6 @@ export default function FacultyAssessmentDetail() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Question authoring</span>
-          <strong>Refine prompts before publishing scores</strong>
-          <p>Open each assessment item here to build the actual question set and verify the student-facing preview.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

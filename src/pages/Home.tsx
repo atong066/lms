@@ -35,6 +35,9 @@ export default function Home() {
               <Link to="/faculty/dashboard" className="button button--ghost">
                 Preview Faculty
               </Link>
+              <Link to="/student/dashboard" className="button button--ghost">
+                Preview Student
+              </Link>
             </div>
           </div>
 
@@ -136,6 +139,9 @@ export default function Home() {
           </Link>
           <Link to="/faculty/dashboard" className="button button--ghost">
             Preview Faculty Dashboard
+          </Link>
+          <Link to="/student/dashboard" className="button button--ghost">
+            Preview Student Dashboard
           </Link>
         </div>
       </section>

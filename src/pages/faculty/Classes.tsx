@@ -105,12 +105,6 @@ export default function FacultyClasses() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>This week</span>
-          <strong>Three active preparations running</strong>
-          <p>Keep class materials, room changes, and learner follow-ups visible from one faculty class board.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />

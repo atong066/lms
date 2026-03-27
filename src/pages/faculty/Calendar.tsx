@@ -158,12 +158,6 @@ export default function FacultyCalendar() {
           })}
         </nav>
 
-        <div className="faculty-dashboard__sidebar-note">
-          <span>Calendar view</span>
-          <strong>Teaching blocks, consultations, and faculty events</strong>
-          <p>Review the month schedule and update entries from one faculty calendar without dragging items around.</p>
-        </div>
-
         <button type="button" className="faculty-dashboard__logout">
           <span>
             <FaSignOutAlt />
