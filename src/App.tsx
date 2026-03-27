@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -29,7 +29,7 @@ import Reports from './pages/Reports'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin/login" element={<Login />} />
@@ -75,7 +75,7 @@ function App() {
           <Route path="/settings" element={<Navigate to="/admin/settings" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
