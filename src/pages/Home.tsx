@@ -29,15 +29,17 @@ export default function Home() {
               <Link to="/admin/login" className="button button--primary">
                 Enter Admin Portal
               </Link>
-              <Link to="/admin/dashboard" className="button button--ghost">
-                Preview Admin
-              </Link>
-              <Link to="/faculty/dashboard" className="button button--ghost">
-                Preview Faculty
-              </Link>
-              <Link to="/student/dashboard" className="button button--ghost">
-                Preview Student
-              </Link>
+              <div className="hero-preview-grid">
+                <Link to="/admin/dashboard" className="button button--ghost">
+                  Preview Admin
+                </Link>
+                <Link to="/faculty/dashboard" className="button button--ghost">
+                  Preview Faculty
+                </Link>
+                <Link to="/student/dashboard" className="button button--ghost">
+                  Preview Student
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -134,15 +136,17 @@ export default function Home() {
           <Link to="/admin/login" className="button button--primary">
             Sign in as Admin
           </Link>
-          <Link to="/admin/dashboard" className="button button--ghost">
-            Preview Admin Dashboard
-          </Link>
-          <Link to="/faculty/dashboard" className="button button--ghost">
-            Preview Faculty Dashboard
-          </Link>
-          <Link to="/student/dashboard" className="button button--ghost">
-            Preview Student Dashboard
-          </Link>
+          <div className="hero-preview-grid">
+            <Link to="/admin/dashboard" className="button button--ghost">
+              Preview Admin Dashboard
+            </Link>
+            <Link to="/faculty/dashboard" className="button button--ghost">
+              Preview Faculty Dashboard
+            </Link>
+            <Link to="/student/dashboard" className="button button--ghost">
+              Preview Student Dashboard
+            </Link>
+          </div>
         </div>
       </section>
     </main>

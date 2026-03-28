@@ -1,6 +1,7 @@
 import { useMemo, useState, type DragEvent, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { FaBell, FaBookOpen, FaCalendarAlt, FaChartLine, FaCog, FaEdit, FaEnvelope, FaFileAlt, FaFilter, FaGraduationCap, FaHome, FaPlus, FaRegCircle, FaSearch, FaSignOutAlt, FaUserCheck, FaUserClock, FaUserGraduate, FaUsers } from 'react-icons/fa'
+import { FaBookOpen, FaCalendarAlt, FaChartLine, FaCog, FaEdit, FaFileAlt, FaFilter, FaGraduationCap, FaHome, FaPlus, FaSearch, FaSignOutAlt, FaUserCheck, FaUserClock, FaUserGraduate, FaUsers } from 'react-icons/fa'
+import { AdminTopbar } from '../components/AdminTopbar'
 
 type EventType = 'Academic' | 'HR' | 'Registrar' | 'Campus'
 type EventRecord = {
@@ -51,6 +52,7 @@ const navItems = [
 ]
 
 const calendarDays = Array.from({ length: 30 }, (_, index) => index + 1)
+const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const eventTypes: EventType[] = ['Academic', 'HR', 'Registrar', 'Campus']
 
 const formatDisplayDate = (date: string) =>
@@ -74,6 +76,7 @@ const compareEvents = (left: EventRecord, right: EventRecord) =>
   `${left.date}-${left.time}`.localeCompare(`${right.date}-${right.time}`)
 
 export default function Calendar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [events, setEvents] = useState<EventRecord[]>(initialEvents)
   const [search, setSearch] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -199,7 +202,7 @@ export default function Calendar() {
   }
 
   return (
-    <main className="dashboard-page dashboard-reference users-reference-page">
+    <main className={`dashboard-page dashboard-reference users-reference-page${isSidebarOpen ? ' is-sidebar-open' : ''}`}>
       <aside className="dashboard-reference__sidebar">
         <div className="dashboard-reference__brand"><span className="dashboard-reference__brand-icon"><FaGraduationCap /></span><div><strong>NALAKA LMS</strong><span>Registrar & HR</span></div></div>
         <div className="dashboard-reference__profile"><div className="dashboard-reference__avatar">JD</div><div className="dashboard-reference__profile-copy"><strong>John Doe</strong><span>Operations</span></div><em>3</em></div>
@@ -212,17 +215,9 @@ export default function Calendar() {
         <button type="button" className="dashboard-reference__logout"><span><FaSignOutAlt />Logout</span><span aria-hidden="true">{'>'}</span></button>
       </aside>
 
+      <button type="button" className="dashboard-reference__sidebar-backdrop" aria-label="Close admin menu" onClick={() => setIsSidebarOpen(false)} />
       <section className="dashboard-reference__main">
-        <header className="dashboard-reference__topbar">
-          <div className="dashboard-reference__topbar-user"><div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div><strong>John Doe</strong></div>
-          <div className="dashboard-reference__topbar-actions">
-            <button type="button" className="has-badge"><FaBell /><span>5</span></button>
-            <button type="button"><FaEnvelope /></button>
-            <button type="button"><FaCog /></button>
-            <button type="button"><FaRegCircle /></button>
-            <div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div>
-          </div>
-        </header>
+        <AdminTopbar onMenuToggle={() => setIsSidebarOpen((current) => !current)} />
 
         <section className="dashboard-reference__content users-reference">
           <h1>Calendar</h1>
@@ -259,6 +254,7 @@ export default function Calendar() {
                   {calendarDays.map((day) => {
                     const dayEvents = eventMap.get(day) ?? []
                     const isDropTarget = dropDay === day
+                    const weekdayLabel = weekdayLabels[(day - 1) % weekdayLabels.length]
                     return (
                       <article
                         key={day}
@@ -268,6 +264,7 @@ export default function Calendar() {
                         onDrop={handleDayDrop(day)}
                       >
                         <strong>{day}</strong>
+                        <span className="calendar-reference__day-label">{weekdayLabel}</span>
                         <div>
                           {dayEvents.slice(0, 2).map((eventRecord) => (
                             <button

@@ -1,17 +1,14 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  FaBell,
   FaBookOpen,
   FaCalendarAlt,
   FaChartLine,
   FaCog,
-  FaEnvelope,
   FaFileAlt,
   FaFilter,
   FaGraduationCap,
   FaHome,
-  FaRegCircle,
   FaSearch,
   FaSignOutAlt,
   FaUserCheck,
@@ -19,6 +16,7 @@ import {
   FaUserGraduate,
   FaUsers,
 } from 'react-icons/fa'
+import { AdminTopbar } from '../components/AdminTopbar'
 
 type StudentRecord = {
   id: string
@@ -91,6 +89,7 @@ function createInitialStudents(): StudentRecord[] {
 const initialStudents = createInitialStudents()
 
 export default function Students() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [students] = useState<StudentRecord[]>(initialStudents)
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
@@ -123,7 +122,7 @@ export default function Students() {
   }
 
   return (
-    <main className="dashboard-page dashboard-reference users-reference-page">
+    <main className={`dashboard-page dashboard-reference users-reference-page${isSidebarOpen ? ' is-sidebar-open' : ''}`}>
       <aside className="dashboard-reference__sidebar">
         <div className="dashboard-reference__brand">
           <span className="dashboard-reference__brand-icon">
@@ -165,30 +164,15 @@ export default function Students() {
         </button>
       </aside>
 
-      <section className="dashboard-reference__main">
-        <header className="dashboard-reference__topbar">
-          <div className="dashboard-reference__topbar-user">
-            <div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div>
-            <strong>John Doe</strong>
-          </div>
+      <button
+        type="button"
+        className="dashboard-reference__sidebar-backdrop"
+        aria-label="Close admin menu"
+        onClick={() => setIsSidebarOpen(false)}
+      />
 
-          <div className="dashboard-reference__topbar-actions">
-            <button type="button" className="has-badge">
-              <FaBell />
-              <span>5</span>
-            </button>
-            <button type="button">
-              <FaEnvelope />
-            </button>
-            <button type="button">
-              <FaCog />
-            </button>
-            <button type="button">
-              <FaRegCircle />
-            </button>
-            <div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div>
-          </div>
-        </header>
+      <section className="dashboard-reference__main">
+        <AdminTopbar onMenuToggle={() => setIsSidebarOpen((current) => !current)} />
 
         <section className="dashboard-reference__content users-reference students-reference">
           <h1>Students</h1>
@@ -314,9 +298,6 @@ export default function Students() {
               </div>
 
               <div className="users-reference__footer">
-                <p>
-                  Active roster reflects search and status filters in real time.
-                </p>
                 <div className="dashboard-reference__pager users-reference__pager">
                   <button type="button" onClick={() => goToPage(safePage - 1)} disabled={safePage === 1}>
                     Previous

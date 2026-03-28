@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaBell, FaBookOpen, FaCalendarAlt, FaChartLine, FaCog, FaDownload, FaEnvelope, FaFileAlt, FaFilter, FaGraduationCap, FaHome, FaPlus, FaRegCircle, FaSearch, FaSignOutAlt, FaUserCheck, FaUserClock, FaUserGraduate, FaUsers } from 'react-icons/fa'
+import { FaBookOpen, FaCalendarAlt, FaChartLine, FaCog, FaDownload, FaFileAlt, FaFilter, FaGraduationCap, FaHome, FaPlus, FaSearch, FaSignOutAlt, FaUserCheck, FaUserClock, FaUserGraduate, FaUsers } from 'react-icons/fa'
+import { AdminTopbar } from '../components/AdminTopbar'
 
 type DocumentRecord = {
   id: string
@@ -53,6 +54,7 @@ const initialRecords: DocumentRecord[] = Array.from({ length: 22 }, (_, index) =
 }))
 
 export default function Documents() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [records, setRecords] = useState<DocumentRecord[]>(initialRecords)
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
@@ -119,7 +121,7 @@ export default function Documents() {
   }
 
   return (
-    <main className="dashboard-page dashboard-reference users-reference-page">
+    <main className={`dashboard-page dashboard-reference users-reference-page${isSidebarOpen ? ' is-sidebar-open' : ''}`}>
       <aside className="dashboard-reference__sidebar">
         <div className="dashboard-reference__brand"><span className="dashboard-reference__brand-icon"><FaGraduationCap /></span><div><strong>NALAKA LMS</strong><span>Registrar & HR</span></div></div>
         <div className="dashboard-reference__profile"><div className="dashboard-reference__avatar">JD</div><div className="dashboard-reference__profile-copy"><strong>John Doe</strong><span>Records Officer</span></div><em>3</em></div>
@@ -134,8 +136,9 @@ export default function Documents() {
         </nav>
         <button type="button" className="dashboard-reference__logout"><span><FaSignOutAlt />Logout</span><span aria-hidden="true">{'>'}</span></button>
       </aside>
+      <button type="button" className="dashboard-reference__sidebar-backdrop" aria-label="Close admin menu" onClick={() => setIsSidebarOpen(false)} />
       <section className="dashboard-reference__main">
-        <header className="dashboard-reference__topbar"><div className="dashboard-reference__topbar-user"><div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div><strong>John Doe</strong></div><div className="dashboard-reference__topbar-actions"><button type="button" className="has-badge"><FaBell /><span>5</span></button><button type="button"><FaEnvelope /></button><button type="button"><FaCog /></button><button type="button"><FaRegCircle /></button><div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div></div></header>
+        <AdminTopbar onMenuToggle={() => setIsSidebarOpen((current) => !current)} />
         <section className="dashboard-reference__content users-reference documents-reference">
           <section className="documents-reference__topbar">
             <div>

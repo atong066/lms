@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaBell, FaBookOpen, FaCalendarAlt, FaChartLine, FaCog, FaEnvelope, FaFileAlt, FaGraduationCap, FaHome, FaLock, FaPlus, FaRegCircle, FaShieldAlt, FaSignOutAlt, FaUser, FaUserCheck, FaUserClock, FaUserGraduate, FaUsers } from 'react-icons/fa'
+import { FaBell, FaBookOpen, FaCalendarAlt, FaChartLine, FaCog, FaFileAlt, FaGraduationCap, FaHome, FaLock, FaPlus, FaShieldAlt, FaSignOutAlt, FaUser, FaUserCheck, FaUserClock, FaUserGraduate, FaUsers } from 'react-icons/fa'
+import { AdminTopbar } from '../components/AdminTopbar'
 
 const navItems = [
   { icon: FaHome, label: 'Dashboard', to: '/admin/dashboard' },
@@ -40,6 +41,7 @@ const initialSignatories: Signatory[] = [
 ]
 
 export default function Settings() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<SettingsTab>('account')
   const [signatories, setSignatories] = useState(initialSignatories)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -409,7 +411,7 @@ export default function Settings() {
   }
 
   return (
-    <main className="dashboard-page dashboard-reference users-reference-page">
+    <main className={`dashboard-page dashboard-reference users-reference-page${isSidebarOpen ? ' is-sidebar-open' : ''}`}>
       <aside className="dashboard-reference__sidebar">
         <div className="dashboard-reference__brand"><span className="dashboard-reference__brand-icon"><FaGraduationCap /></span><div><strong>NALAKA LMS</strong><span>Registrar & HR</span></div></div>
         <div className="dashboard-reference__profile"><div className="dashboard-reference__avatar">JD</div><div className="dashboard-reference__profile-copy"><strong>John Doe</strong><span>System Admin</span></div><em>3</em></div>
@@ -422,20 +424,17 @@ export default function Settings() {
         <button type="button" className="dashboard-reference__logout"><span><FaSignOutAlt />Logout</span><span aria-hidden="true">{'>'}</span></button>
       </aside>
 
+      <button type="button" className="dashboard-reference__sidebar-backdrop" aria-label="Close admin menu" onClick={() => setIsSidebarOpen(false)} />
       <section className="dashboard-reference__main">
-        <header className="dashboard-reference__topbar">
-          <div className="dashboard-reference__topbar-copy">
-            <strong>Settings</strong>
-            <span>Manage and customize system settings</span>
-          </div>
-          <div className="dashboard-reference__topbar-actions">
-            <button type="button" className="has-badge"><FaBell /><span>5</span></button>
-            <button type="button"><FaEnvelope /></button>
-            <button type="button"><FaCog /></button>
-            <button type="button"><FaRegCircle /></button>
-            <div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div>
-          </div>
-        </header>
+        <AdminTopbar
+          onMenuToggle={() => setIsSidebarOpen((current) => !current)}
+          leftContent={
+            <div className="dashboard-reference__topbar-copy">
+              <strong>Settings</strong>
+              <span>Manage and customize system settings</span>
+            </div>
+          }
+        />
 
         <section className="dashboard-reference__content users-reference settings-reference">
           <section className="dashboard-reference__panel users-reference__panel settings-reference__panel">

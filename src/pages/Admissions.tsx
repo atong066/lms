@@ -1,18 +1,15 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  FaBell,
   FaBookOpen,
   FaCalendarAlt,
   FaChartLine,
   FaCog,
-  FaEnvelope,
   FaFileAlt,
   FaFilter,
   FaGraduationCap,
   FaHome,
   FaPlus,
-  FaRegCircle,
   FaSearch,
   FaSignOutAlt,
   FaUserCheck,
@@ -20,6 +17,7 @@ import {
   FaUserGraduate,
   FaUsers,
 } from 'react-icons/fa'
+import { AdminTopbar } from '../components/AdminTopbar'
 
 type AdmissionRecord = {
   id: string
@@ -67,6 +65,7 @@ const initialRecords: AdmissionRecord[] = Array.from({ length: 32 }, (_, index) 
 }))
 
 export default function Admissions() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [records, setRecords] = useState<AdmissionRecord[]>(initialRecords)
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
@@ -113,7 +112,7 @@ export default function Admissions() {
   }
 
   return (
-    <main className="dashboard-page dashboard-reference users-reference-page">
+    <main className={`dashboard-page dashboard-reference users-reference-page${isSidebarOpen ? ' is-sidebar-open' : ''}`}>
       <aside className="dashboard-reference__sidebar">
         <div className="dashboard-reference__brand">
           <span className="dashboard-reference__brand-icon"><FaGraduationCap /></span>
@@ -138,17 +137,15 @@ export default function Admissions() {
         <button type="button" className="dashboard-reference__logout"><span><FaSignOutAlt />Logout</span><span aria-hidden="true">{'>'}</span></button>
       </aside>
 
+      <button
+        type="button"
+        className="dashboard-reference__sidebar-backdrop"
+        aria-label="Close admin menu"
+        onClick={() => setIsSidebarOpen(false)}
+      />
+
       <section className="dashboard-reference__main">
-        <header className="dashboard-reference__topbar">
-          <div className="dashboard-reference__topbar-user"><div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div><strong>John Doe</strong></div>
-          <div className="dashboard-reference__topbar-actions">
-            <button type="button" className="has-badge"><FaBell /><span>5</span></button>
-            <button type="button"><FaEnvelope /></button>
-            <button type="button"><FaCog /></button>
-            <button type="button"><FaRegCircle /></button>
-            <div className="dashboard-reference__avatar dashboard-reference__avatar--small">JD</div>
-          </div>
-        </header>
+        <AdminTopbar onMenuToggle={() => setIsSidebarOpen((current) => !current)} />
 
         <section className="dashboard-reference__content users-reference">
           <h1>Admissions</h1>
